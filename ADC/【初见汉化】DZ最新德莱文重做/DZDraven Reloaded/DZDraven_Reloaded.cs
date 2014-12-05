@@ -27,88 +27,86 @@ namespace DZDraven_Reloaded
             Player = ObjectManager.Player;
             if(Player.ChampionName != "Draven")return;
 
-            Menu = new Menu("【VIP】德莱文", "DravenReloaded", true);
-            var xSLxMenu = new Menu("走砍", "Orbwalker1");
+            Menu = new Menu("【初见汉化】德莱文重做更新", "DravenReloaded", true);
+            var xSLxMenu = new Menu("[初见汉化] - 走砍", "Orbwalker1");
             xSLxOrbwalker.AddToMenu(xSLxMenu);
             Menu.AddSubMenu(xSLxMenu);
-            var ts = new Menu("目标选择", "TargetSelector");
+            var ts = new Menu("[初见汉化] - 目标选择器", "TargetSelector");
             SimpleTs.AddToMenu(ts);
             Menu.AddSubMenu(ts);
 
-            Menu.AddSubMenu(new Menu("连招", "Combo"));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("UseQC", "使用Q").SetValue(true));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("UseWC", "使用W").SetValue(true));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("UseEC", "使用E").SetValue(true));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("UseRC", "使用R").SetValue(true));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("QManaC", "Q蓝量").SetValue(new Slider(30, 1, 100)));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("WManaC", "W蓝量").SetValue(new Slider(25, 1, 100)));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("EManaC", "E蓝量").SetValue(new Slider(20, 1, 100)));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("RManaC", "R蓝量").SetValue(new Slider(5, 1, 100)));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("CAC", "接住斧头").SetValue(true));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 连招", "Combo"));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("UseQC", "使用 Q ").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("UseWC", "使用 W ").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("UseEC", "使用 E ").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("UseRC", "使用 R ").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("QManaC", "Q在法力值　使用连招").SetValue(new Slider(30, 1, 100)));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("WManaC", "W在法力值　使用连招").SetValue(new Slider(25, 1, 100)));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("EManaC", "E在法力值　使用连招").SetValue(new Slider(20, 1, 100)));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("RManaC", "R在法力值　使用连招").SetValue(new Slider(5, 1, 100)));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("CAC", "使用连招接斧子").SetValue(true));
 
-            Menu.AddSubMenu(new Menu("骚扰", "Harrass"));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseQH", "使用Q").SetValue(true));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseWH", "使用W").SetValue(true));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseEH", "使用E").SetValue(true));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseRH", "使用R").SetValue(true));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("QManaH", "Q蓝量").SetValue(new Slider(30, 1, 100)));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("WManaH", "W蓝量").SetValue(new Slider(25, 1, 100)));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("EManaH", "E蓝量").SetValue(new Slider(20, 1, 100)));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("RManaH", "R蓝量").SetValue(new Slider(5, 1, 100)));
-            Menu.SubMenu("Harrass").AddItem(new MenuItem("CAH", "接住斧头").SetValue(true));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 骚扰", "Harrass"));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseQH", "使用 Q ").SetValue(true));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseWH", "使用 W ").SetValue(true));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseEH", "使用 E ").SetValue(true));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("UseRH", "使用 R ").SetValue(true));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("QManaH", "Q在法力值　使用骚扰").SetValue(new Slider(30, 1, 100)));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("WManaH", "W在法力值　使用骚扰").SetValue(new Slider(25, 1, 100)));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("EManaH", "E在法力值　使用骚扰").SetValue(new Slider(20, 1, 100)));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("RManaH", "R在法力值　使用骚扰").SetValue(new Slider(5, 1, 100)));
+            Menu.SubMenu("Harrass").AddItem(new MenuItem("CAH", "使用骚扰接斧子").SetValue(true));
 
-            Menu.AddSubMenu(new Menu("补兵", "Farm"));
-            Menu.SubMenu("Farm").AddItem(new MenuItem("UseQLC", "使用Q").SetValue(true));
-            Menu.SubMenu("Farm").AddItem(new MenuItem("UseELC", "使用E").SetValue(true));
-            Menu.SubMenu("Farm").AddItem(new MenuItem("QManaLC", "Q蓝量").SetValue(new Slider(25, 1, 100)));
-            Menu.SubMenu("Farm").AddItem(new MenuItem("EManaLC", "E蓝量").SetValue(new Slider(25, 1, 100)));
-            Menu.SubMenu("Farm").AddItem(new MenuItem("CAF", "接住斧头").SetValue(true));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 清线", "Farm"));
+            Menu.SubMenu("Farm").AddItem(new MenuItem("UseQLC", "使用 Q").SetValue(true));
+            Menu.SubMenu("Farm").AddItem(new MenuItem("UseELC", "使用 E").SetValue(true));
+            Menu.SubMenu("Farm").AddItem(new MenuItem("QManaLC", "Q在法力值　使用清线").SetValue(new Slider(25, 1, 100)));
+            Menu.SubMenu("Farm").AddItem(new MenuItem("EManaLC", "E在法力值　使用清线").SetValue(new Slider(25, 1, 100)));
+            Menu.SubMenu("Farm").AddItem(new MenuItem("CAF", "Catch Axes Farm").SetValue(true));
 
-            Menu.AddSubMenu(new Menu("斧头", "Axes"));
-            Menu.SubMenu("Axes").AddItem(new MenuItem("MaxAxeC", "连招最大斧头数").SetValue(new Slider(2, 1, 4)));
-            Menu.SubMenu("Axes").AddItem(new MenuItem("MaxAxeH", "骚扰最大斧头数").SetValue(new Slider(2, 1, 4)));
-            Menu.SubMenu("Axes").AddItem(new MenuItem("MaxAxeF", "补兵最大斧头数").SetValue(new Slider(2, 1, 4)));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 斧子设置", "Axes"));
+            Menu.SubMenu("Axes").AddItem(new MenuItem("MaxAxeC", "连招最大斧头数量").SetValue(new Slider(2, 1, 4)));
+            Menu.SubMenu("Axes").AddItem(new MenuItem("MaxAxeH", "骚扰最大斧头数量").SetValue(new Slider(2, 1, 4)));
+            Menu.SubMenu("Axes").AddItem(new MenuItem("MaxAxeF", "清线最大斧头数量").SetValue(new Slider(2, 1, 4)));
             Menu.SubMenu("Axes")
-                .AddItem(new MenuItem("CatchRadius", "半径").SetValue(new Slider(600, 200, 1000)));
+                .AddItem(new MenuItem("CatchRadius", "斧捕获半径").SetValue(new Slider(600, 200, 1000)));
             Menu.SubMenu("Axes")
-                .AddItem(new MenuItem("SafeZone", "安全区域").SetValue(new Slider(125, 0, 325)));
-            Menu.AddSubMenu(new Menu("杂项", "Misc"));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("ManualR", "手动R").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("Packets", "封包").SetValue(true));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("AntiGP", "防突")).SetValue(true);
-            Menu.SubMenu("Misc").AddItem(new MenuItem("Interrupt", "打断").SetValue(true));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("WCatch", "W接住斧头").SetValue(true));
+                .AddItem(new MenuItem("SafeZone", "斧安全区域").SetValue(new Slider(125, 0, 325)));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 杂项", "Misc"));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("ManualR", "手动使用R").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("Packets", "使用封包").SetValue(true));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("AntiGP", "防止突进")).SetValue(true);
+            Menu.SubMenu("Misc").AddItem(new MenuItem("Interrupt", "打断技能").SetValue(true));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("WCatch", "使用W接斧子").SetValue(true));
 
-            Menu.AddSubMenu(new Menu("物品", "Items"));
-            Menu.SubMenu("Items").AddItem(new MenuItem("BotrkC", "破败(连招)").SetValue(true));
-            Menu.SubMenu("Items").AddItem(new MenuItem("BotrkH", "破败(骚扰)").SetValue(false));
-            Menu.SubMenu("Items").AddItem(new MenuItem("YoumuuC", "幽梦(连招)").SetValue(true));
-            Menu.SubMenu("Items").AddItem(new MenuItem("YoumuuH", "幽梦(骚扰)").SetValue(false));
-            Menu.SubMenu("Items").AddItem(new MenuItem("BilgeC", "小弯刀(连招)").SetValue(true));
-            Menu.SubMenu("Items").AddItem(new MenuItem("BilgeH", "小弯刀(骚扰)").SetValue(false));
-            Menu.SubMenu("Items").AddItem(new MenuItem("OwnHPercBotrk", "破败HP").SetValue(new Slider(50, 1, 100)));
-            Menu.SubMenu("Items").AddItem(new MenuItem("EnHPercBotrk", "破败敌人HP").SetValue(new Slider(20, 1, 100)));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 项目", "Items"));
+            Menu.SubMenu("Items").AddItem(new MenuItem("BotrkC", "使用破败在连招").SetValue(true));
+            Menu.SubMenu("Items").AddItem(new MenuItem("BotrkH", "使用破败在骚扰").SetValue(false));
+            Menu.SubMenu("Items").AddItem(new MenuItem("YoumuuC", "使用幽梦在连招").SetValue(true));
+            Menu.SubMenu("Items").AddItem(new MenuItem("YoumuuH", "使用幽梦在骚扰").SetValue(false));
+            Menu.SubMenu("Items").AddItem(new MenuItem("BilgeC", "使用弯刀在连招").SetValue(true));
+            Menu.SubMenu("Items").AddItem(new MenuItem("BilgeH", "使用弯刀在骚扰").SetValue(false));
+            Menu.SubMenu("Items").AddItem(new MenuItem("OwnHPercBotrk", "自己最低血量使用破败").SetValue(new Slider(50, 1, 100)));
+            Menu.SubMenu("Items").AddItem(new MenuItem("EnHPercBotrk", "敌人最低血量使用破败").SetValue(new Slider(20, 1, 100)));
 
-            Menu.AddSubMenu(new Menu("净化选项", "QSSMenu"));
-            Menu.SubMenu("QSSMenu").AddItem(new MenuItem("UseQSS", "水银饰带").SetValue(true));
-            Menu.AddSubMenu(new Menu("净化类型|", "QSST"));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 安全设置", "QSSMenu"));
+            Menu.SubMenu("QSSMenu").AddItem(new MenuItem("UseQSS", "使用快速安全设置").SetValue(true));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 安全设置Buff类", "QSST"));
             Cleanser.CreateTypeQSSMenu();
-            Menu.AddSubMenu(new Menu("净化技能|", "QSSSpell"));
+            Menu.AddSubMenu(new Menu("[初见汉化] - 安全设置法术", "QSSSpell"));
             Cleanser.CreateQSSSpellMenu();
 
-            Menu.AddSubMenu(new Menu("显示", "Drawing"));
-
+            Menu.AddSubMenu(new Menu("[初见汉化] - 技能范围", "Drawing"));
+            Menu.AddSubMenu(new Menu("初见汉化", "by chujian"));
+            Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao", "汉化群：386289593"));
+            Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao1", "交流群：333399"));
             //Drawings Menu
             Menu.SubMenu("Drawing").AddItem(new MenuItem("DrawE", "E范围").SetValue(new Circle(true, Color.MediumPurple)));
-            Menu.SubMenu("Drawing").AddItem(new MenuItem("DrawCRange", "斧头范围").SetValue(new Circle(true, Color.RoyalBlue)));
-            Menu.SubMenu("Drawing").AddItem(new MenuItem("DrawRet", "显示斧头").SetValue(new Circle(true, Color.Yellow)));
-            Menu.SubMenu("Drawing").AddItem(new MenuItem("DrawNextRet", "显示下个斧头").SetValue(new Circle(true, Color.Orange)));
+            Menu.SubMenu("Drawing").AddItem(new MenuItem("DrawCRange", "接斧子范围").SetValue(new Circle(true, Color.RoyalBlue)));
+            Menu.SubMenu("Drawing").AddItem(new MenuItem("DrawRet", "阻挡斧子落点").SetValue(new Circle(true, Color.Yellow)));
+            Menu.SubMenu("Drawing").AddItem(new MenuItem("DrawNextRet", "正常斧子落点").SetValue(new Circle(true, Color.Orange)));
             Menu.AddToMainMenu();
 
-			
-			Menu.AddSubMenu(new Menu("超神汉化", "by welai"));
-			Menu.SubMenu("by welai").AddItem(new MenuItem("qunhao", "汉化群：386289593"));
-			
             Q = new Spell(SpellSlot.Q);
             W = new Spell(SpellSlot.W);
             E = new Spell(SpellSlot.E, 1100);
@@ -144,13 +142,18 @@ namespace DZDraven_Reloaded
         {
             if (Player.IsDead) return;
             minionThere();
+            if (Axes.Count == 0)
+            {
+                xSLxOrbwalker.CustomOrbwalkMode = false;
+            }
             //Game.PrintChat(hasWBuff().ToString());
             var target = SimpleTs.GetTarget(xSLxOrbwalker.GetAutoAttackRange(), SimpleTs.DamageType.Physical);
             var Etarget = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Physical);
             var RTarget = SimpleTs.GetTarget(2000f, SimpleTs.DamageType.Physical);
+            CatchAxes();
             Cleanser.cleanserBySpell();
             Cleanser.cleanserByBuffType();
-            CatchAxes();
+            
             if(target.IsValidTarget())CastQ();
             if(Etarget.IsValidTarget())CastE(Etarget);
             if (RTarget.IsValidTarget()) CastRExecute(RTarget);
@@ -239,15 +242,19 @@ namespace DZDraven_Reloaded
         {
             bool shouldUseWForIt;
             //Game.PrintChat("I'm Combo");
+            if (Axes.Count == 0)
+            {
+                xSLxOrbwalker.CustomOrbwalkMode = false;
+                return;
+            }
             var Axe = getClosestAxe(out shouldUseWForIt);
             
             if (Axe == null)
             {
                 xSLxOrbwalker.CustomOrbwalkMode = false;
-                xSLxOrbwalker.SetAttack(true);
                 return;
             }
-            if (shouldUseWForIt) { xSLxOrbwalker.SetAttack(false); } else { xSLxOrbwalker.SetAttack(true);}
+          //  if (shouldUseWForIt) { xSLxOrbwalker.SetAttack(false); } else { xSLxOrbwalker.SetAttack(true);}
             switch (xSLxOrbwalker.CurrentMode)
             {
                 case xSLxOrbwalker.Mode.Combo:

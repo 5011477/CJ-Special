@@ -30,36 +30,36 @@ namespace DZDraven_Reloaded
 
         public static void CreateTypeQSSMenu()
         {
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("stun", "鐪╂檿").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("charm", "榄呮儜").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("taunt", "鍢茶").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("fear", "鎭愭儳").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("snare", "闄烽槺").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("silence", "娌夐粯").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("supression", "鍘嬪埗").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("polymorph", "鍙樺舰").SetValue(true));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("blind", "鑷寸洸").SetValue(false));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("slow", "鍑忛€焲").SetValue(false));
-            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("poison", "涓瘨").SetValue(false));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("stun", "眩晕").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("charm", "魅惑").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("taunt", "嘲讽").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("fear", "恐惧").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("snare", "陷阱").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("silence", "沉默").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("supression", "压抑").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("polymorph", "变形").SetValue(true));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("blind", "致盲").SetValue(false));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("slow", "减速").SetValue(false));
+            DZDraven_Reloaded.Menu.SubMenu("QSST").AddItem(new MenuItem("poison", "毒").SetValue(false));
         }
 
         public static void CreateQSSSpellList()
         {
             /**Danger Level 5 Spells*/
-            qssSpells.Add(new QSSSpell { ChampName = "Warwick", isEnabled = true, SpellBuff = "InfiniteDuress", SpellName = "鐙间汉R", onlyKill = false });
-            qssSpells.Add(new QSSSpell { ChampName = "Zed", isEnabled = true, SpellBuff = "zedulttargetmark", SpellName = "鍔玆", onlyKill = true });
-            qssSpells.Add(new QSSSpell { ChampName = "Rammus", isEnabled = true, SpellBuff = "PuncturingTaunt", SpellName = "榫欓緹E", onlyKill = false });
+            qssSpells.Add(new QSSSpell { ChampName = "Warwick", isEnabled = true, SpellBuff = "InfiniteDuress", SpellName = "Warwick R", onlyKill = false });
+            qssSpells.Add(new QSSSpell { ChampName = "Zed", isEnabled = true, SpellBuff = "zedulttargetmark", SpellName = "Zed R", onlyKill = true });
+            qssSpells.Add(new QSSSpell { ChampName = "Rammus", isEnabled = true, SpellBuff = "PuncturingTaunt", SpellName = "Rammus E", onlyKill = false });
             /** Danger Level 4 Spells*/
-            qssSpells.Add(new QSSSpell { ChampName = "Skarner", isEnabled = true, SpellBuff = "SkarnerImpale", SpellName = "铦庡瓙R", onlyKill = false });
-            qssSpells.Add(new QSSSpell { ChampName = "Fizz", isEnabled = true, SpellBuff = "FizzMarinerDoom", SpellName = "楸间汉R", onlyKill = false });
-            qssSpells.Add(new QSSSpell { ChampName = "Galio", isEnabled = true, SpellBuff = "GalioIdolOfDurand", SpellName = "鍝ㄥ叺R", onlyKill = false });
-            qssSpells.Add(new QSSSpell { ChampName = "Malzahar", isEnabled = true, SpellBuff = "AlZaharNetherGrasp", SpellName = "铓傝毐R", onlyKill = false });
+            qssSpells.Add(new QSSSpell { ChampName = "Skarner", isEnabled = true, SpellBuff = "SkarnerImpale", SpellName = "Skaner R", onlyKill = false });
+            qssSpells.Add(new QSSSpell { ChampName = "Fizz", isEnabled = true, SpellBuff = "FizzMarinerDoom", SpellName = "Fizz R", onlyKill = false });
+            qssSpells.Add(new QSSSpell { ChampName = "Galio", isEnabled = true, SpellBuff = "GalioIdolOfDurand", SpellName = "Galio R", onlyKill = false });
+            qssSpells.Add(new QSSSpell { ChampName = "Malzahar", isEnabled = true, SpellBuff = "AlZaharNetherGrasp", SpellName = "Malz R", onlyKill = false });
             /** Danger Level 3 Spells*/
-            qssSpells.Add(new QSSSpell { ChampName = "Zilean", isEnabled = false, SpellBuff = "timebombenemybuff", SpellName = "鏃跺厜Q", onlyKill = true });
-            qssSpells.Add(new QSSSpell { ChampName = "Vladimir", isEnabled = false, SpellBuff = "VladimirHemoplague", SpellName = "鍚歌楝糝", onlyKill = true });
-            qssSpells.Add(new QSSSpell { ChampName = "Mordekaiser", isEnabled = true, SpellBuff = "MordekaiserChildrenOfTheGrave", SpellName = "閾佺敺R", onlyKill = true });
+            qssSpells.Add(new QSSSpell { ChampName = "Zilean", isEnabled = false, SpellBuff = "timebombenemybuff", SpellName = "Zilean Q", onlyKill = true });
+            qssSpells.Add(new QSSSpell { ChampName = "Vladimir", isEnabled = false, SpellBuff = "VladimirHemoplague", SpellName = "Vlad R", onlyKill = true });
+            qssSpells.Add(new QSSSpell { ChampName = "Mordekaiser", isEnabled = true, SpellBuff = "MordekaiserChildrenOfTheGrave", SpellName = "Morde R", onlyKill = true });
             /** Danger Level 2 Spells*/
-            qssSpells.Add(new QSSSpell { ChampName = "Poppy", isEnabled = true, SpellBuff = "PoppyDiplomaticImmunity", SpellName = "娉㈡瘮R", onlyKill = false });
+            qssSpells.Add(new QSSSpell { ChampName = "Poppy", isEnabled = true, SpellBuff = "PoppyDiplomaticImmunity", SpellName = "Poppy R", onlyKill = false });
         }
 
         internal static void cleanUselessSpells()

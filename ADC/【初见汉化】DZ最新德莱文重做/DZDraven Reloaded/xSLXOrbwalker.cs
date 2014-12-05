@@ -54,8 +54,8 @@ namespace DZDraven_Reloaded
         private static Obj_AI_Base _lastTarget;
         private static Spell _movementPrediction;
         private static int _lastMovement;
-        private static int _Windup;
-
+        private static int _windup;
+        private static int lastRealAttack;
         public static void AddToMenu(Menu menu)
         {
             _movementPrediction = new Spell(SpellSlot.Unknown, GetAutoAttackRange());
@@ -63,73 +63,73 @@ namespace DZDraven_Reloaded
 
             Menu = menu;
 
-            var menuDrawing = new Menu("鏄剧ず", "orb_Draw");
-            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange", "骞矨").SetValue(new Circle(true, Color.FloralWhite)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange_Enemy", "鏁屼汉骞矨").SetValue(new Circle(true, Color.Pink)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_Holdzone", "瀹夊叏鍖哄煙").SetValue(new Circle(true, Color.FloralWhite)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar", "灏忓叺琛€鏍紎").SetValue(new Circle(true, Color.Black)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar_thickness", "鍘氬害").SetValue(new Slider(1, 1, 3)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_hitbox", "鏄剧ず鏀诲嚮").SetValue(new Circle(true, Color.FloralWhite)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_Lasthit", "鏄剧ず琛ュ叺").SetValue(new Circle(true, Color.Lime)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_nearKill", "鍙潃灏忓叺").SetValue(new Circle(true, Color.Gold)));
+            var menuDrawing = new Menu("显示", "orb_Draw");
+            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange", "平A范围").SetValue(new Circle(true, Color.FloralWhite)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange_Enemy", "敌人平A范围").SetValue(new Circle(true, Color.Pink)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_Holdzone", "控制区域").SetValue(new Circle(true, Color.FloralWhite)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar", "小兵血格").SetValue(new Circle(true, Color.Black)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar_thickness", "密度").SetValue(new Slider(1, 1, 3)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_hitbox", "显示命中").SetValue(new Circle(true, Color.FloralWhite)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_Lasthit", "补兵").SetValue(new Circle(true, Color.Lime)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_nearKill", "附近小兵").SetValue(new Circle(true, Color.Gold)));
             menu.AddSubMenu(menuDrawing);
 
-            var menuMisc = new Menu("鏉傞」", "orb_Misc");
-            menuMisc.AddItem(new MenuItem("orb_Misc_Holdzone", "闃插畧鍖哄煙").SetValue(new Slider(50, 100, 0)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_Farmdelay", "琛ュ叺寤惰繜").SetValue(new Slider(0, 200, 0)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_ExtraWindUp", "棰濆鏃堕棿").SetValue(new Slider(80, 200, 0)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_AutoWindUp", "鑷姩璁剧疆").SetValue(false));
-            menuMisc.AddItem(new MenuItem("orb_Misc_Priority_Unit", "浼樺厛").SetValue(new StringList(new[] { "Minion", "Hero" })));
-            menuMisc.AddItem(new MenuItem("orb_Misc_Humanizer", "寤惰繜").SetValue(new Slider(80, 200, 15)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_AllMovementDisabled", "绂佺敤绉诲姩").SetValue(false));
-            menuMisc.AddItem(new MenuItem("orb_Misc_AllAttackDisabled", "绂佺敤鏀诲嚮").SetValue(false));
+            var menuMisc = new Menu("杂项", "orb_Misc");
+            menuMisc.AddItem(new MenuItem("orb_Misc_Holdzone", "防守").SetValue(new Slider(50, 100, 0)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_Farmdelay", "补兵延迟").SetValue(new Slider(0, 200, 0)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_ExtraWindUp", "额外").SetValue(new Slider(80, 200, 0)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_AutoWindUp", "自动设置").SetValue(false));
+            menuMisc.AddItem(new MenuItem("orb_Misc_Priority_Unit", "优先").SetValue(new StringList(new[] { "Minion", "Hero" })));
+            menuMisc.AddItem(new MenuItem("orb_Misc_Humanizer", "延迟").SetValue(new Slider(80, 200, 15)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_AllMovementDisabled", "禁用移动").SetValue(false));
+            menuMisc.AddItem(new MenuItem("orb_Misc_AllAttackDisabled", "禁用攻击").SetValue(false));
 
             menu.AddSubMenu(menuMisc);
 
-            var menuMelee = new Menu("鍥㈡垬", "orb_Melee");
-            menuMelee.AddItem(new MenuItem("orb_Melee_Prediction", "绉诲姩棰勫垽").SetValue(false));
+            var menuMelee = new Menu("团战", "orb_Melee");
+            menuMelee.AddItem(new MenuItem("orb_Melee_Prediction", "移动预判").SetValue(false));
             menu.AddSubMenu(menuMelee);
 
-            var menuModes = new Menu("璧扮爫", "orb_Modes");
+            var menuModes = new Menu("走砍", "orb_Modes");
             {
-                var modeCombo = new Menu("杩炴嫑", "orb_Modes_Combo");
-                modeCombo.AddItem(new MenuItem("Combo_Key", "鐑敭").SetValue(new KeyBind(32, KeyBindType.Press)));
-                modeCombo.AddItem(new MenuItem("Combo_move", "绉诲姩").SetValue(true));
-                modeCombo.AddItem(new MenuItem("Combo_attack", "鏀诲嚮").SetValue(true));
+                var modeCombo = new Menu("连招", "orb_Modes_Combo");
+                modeCombo.AddItem(new MenuItem("Combo_Key", "热键").SetValue(new KeyBind(32, KeyBindType.Press)));
+                modeCombo.AddItem(new MenuItem("Combo_move", "移动").SetValue(true));
+                modeCombo.AddItem(new MenuItem("Combo_attack", "攻击").SetValue(true));
                 menuModes.AddSubMenu(modeCombo);
 
-                var modeHarass = new Menu("楠氭壈", "orb_Modes_Harass");
-                modeHarass.AddItem(new MenuItem("Harass_Key", "鐑敭").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
-                modeHarass.AddItem(new MenuItem("Harass_move", "绉诲姩").SetValue(true));
-                modeHarass.AddItem(new MenuItem("Harass_attack", "鏀诲嚮").SetValue(true));
-                modeHarass.AddItem(new MenuItem("Harass_Lasthit", "琛ュ叺").SetValue(true));
+                var modeHarass = new Menu("骚扰", "orb_Modes_Harass");
+                modeHarass.AddItem(new MenuItem("Harass_Key", "热键").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
+                modeHarass.AddItem(new MenuItem("Harass_move", "移动").SetValue(true));
+                modeHarass.AddItem(new MenuItem("Harass_attack", "攻击").SetValue(true));
+                modeHarass.AddItem(new MenuItem("Harass_Lasthit", "补兵").SetValue(true));
                 menuModes.AddSubMenu(modeHarass);
 
-                var modeLaneClear = new Menu("娓呯嚎", "orb_Modes_LaneClear");
-                modeLaneClear.AddItem(new MenuItem("LaneClear_Key", "鐑敭").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
-                modeLaneClear.AddItem(new MenuItem("LaneClear_move", "绉诲姩").SetValue(true));
-                modeLaneClear.AddItem(new MenuItem("LaneClear_attack", "鏀诲嚮").SetValue(true));
+                var modeLaneClear = new Menu("清线", "orb_Modes_LaneClear");
+                modeLaneClear.AddItem(new MenuItem("LaneClear_Key", "热键").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
+                modeLaneClear.AddItem(new MenuItem("LaneClear_move", "移动").SetValue(true));
+                modeLaneClear.AddItem(new MenuItem("LaneClear_attack", "攻击").SetValue(true));
                 menuModes.AddSubMenu(modeLaneClear);
 
-                var modeLaneFreeze = new Menu("鎺х嚎", "orb_Modes_LaneFreeze");
-                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_Key", "鐑敭").SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
-                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_move", "绉诲姩").SetValue(true));
-                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_attack", "鏀诲嚮").SetValue(true));
+                var modeLaneFreeze = new Menu("控线", "orb_Modes_LaneFreeze");
+                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_Key", "热键").SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
+                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_move", "移动").SetValue(true));
+                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_attack", "攻击").SetValue(true));
                 menuModes.AddSubMenu(modeLaneFreeze);
 
-                var modeLasthit = new Menu("琛ュ叺", "orb_Modes_LastHit");
-                modeLasthit.AddItem(new MenuItem("LastHit_Key", "鐑敭").SetValue(new KeyBind("X".ToCharArray()[0], KeyBindType.Press)));
-                modeLasthit.AddItem(new MenuItem("LastHit_move", "绉诲姩").SetValue(true));
-                modeLasthit.AddItem(new MenuItem("LastHit_attack", "鏀诲嚮").SetValue(true));
+                var modeLasthit = new Menu("补兵", "orb_Modes_LastHit");
+                modeLasthit.AddItem(new MenuItem("LastHit_Key", "热键").SetValue(new KeyBind("X".ToCharArray()[0], KeyBindType.Press)));
+                modeLasthit.AddItem(new MenuItem("LastHit_move", "移动").SetValue(true));
+                modeLasthit.AddItem(new MenuItem("LastHit_attack", "攻击").SetValue(true));
                 menuModes.AddSubMenu(modeLasthit);
 
-                var modeFlee = new Menu("閫冭窇", "orb_Modes_Flee");
-                modeFlee.AddItem(new MenuItem("Flee_Key", "鐑敭").SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
+                var modeFlee = new Menu("逃跑", "orb_Modes_Flee");
+                modeFlee.AddItem(new MenuItem("Flee_Key", "热键").SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
                 menuModes.AddSubMenu(modeFlee);
             }
             menu.AddSubMenu(menuModes);
-            menu.AddItem(new MenuItem("xSLx_info", "Copyright by xSLx"));
-            menu.AddItem(new MenuItem("xSLx_info2", "Credits: xSLx & Esk0r"));
+            menu.AddItem(new MenuItem("xSLx_info", "版权 by xSLx"));
+            menu.AddItem(new MenuItem("xSLx_info2", "制作: xSLx & Esk0r"));
 
             Drawing.OnDraw += OnDraw;
             Game.OnGameUpdate += OnUpdate;
@@ -150,13 +150,17 @@ namespace DZDraven_Reloaded
                 return;
             var missile = (Obj_SpellMissile)sender;
             if (missile.SpellCaster is Obj_AI_Hero && missile.SpellCaster.IsValid && IsAutoAttack(missile.SData.Name))
+            {
                 FireAfterAttack(missile.SpellCaster, _lastTarget);
+                if (sender.IsMe)
+                    lastRealAttack = Environment.TickCount;
+            }
         }
 
         private static void OnUpdate(EventArgs args)
         {
             CheckAutoWindUp();
-            if (CurrentMode == Mode.None || MenuGUI.IsChatOpen || CustomOrbwalkMode)
+            if (CurrentMode == Mode.None || MenuGUI.IsChatOpen || CustomOrbwalkMode || MyHero.IsChannelingImportantSpell())
                 return;
             var target = GetPossibleTarget();
             Orbwalk(Game.CursorPos, target);
@@ -235,32 +239,32 @@ namespace DZDraven_Reloaded
 
         public static void Orbwalk(Vector3 goalPosition, Obj_AI_Base target)
         {
-            if (target != null && CanAttack() && IsAllowedToAttack())
+            if (target != null && (CanAttack() || HaveCancled()) && IsAllowedToAttack())
             {
                 _disableNextAttack = false;
                 FireBeforeAttack(target);
                 if (!_disableNextAttack)
                 {
-                    //if(CurrentMode != Mode.Harass || !target.IsMinion || Menu.Item("Harass_Lasthit").GetValue<bool>())
-                    //{
-                    MyHero.IssueOrder(GameObjectOrder.AttackUnit, target);
-                    if (!(target is Obj_AI_Hero))
+                    if (CurrentMode != Mode.Harass || !target.IsMinion || Menu.Item("Harass_Lasthit").GetValue<bool>())
+                    {
+                        MyHero.IssueOrder(GameObjectOrder.AttackUnit, target);
                         _lastAATick = Environment.TickCount + Game.Ping / 2;
-                    //}
+                    }
                 }
             }
             if (!CanMove() || !IsAllowedToMove())
                 return;
-            //if(MyHero.IsMelee() && target != null && target.Distance(MyHero) < GetAutoAttackRange(MyHero, target) &&
-            //	Menu.Item("orb_Melee_Prediction").GetValue<bool>() && target is Obj_AI_Hero && Game.CursorPos.Distance(target.Position) < 300)
-            //{
-            //	_movementPrediction.Delay = MyHero.BasicAttack.SpellCastTime;
-            //	_movementPrediction.Speed = MyHero.BasicAttack.MissileSpeed;
-            //	MoveTo(_movementPrediction.GetPrediction(target).UnitPosition);
-            //}
-            //else
-            MoveTo(goalPosition);
+            if (MyHero.IsMelee() && target != null && target.Distance(MyHero) < GetAutoAttackRange(MyHero, target) &&
+                Menu.Item("orb_Melee_Prediction").GetValue<bool>() && target is Obj_AI_Hero && Game.CursorPos.Distance(target.Position) < 300)
+            {
+                _movementPrediction.Delay = MyHero.BasicAttack.SpellCastTime;
+                _movementPrediction.Speed = MyHero.BasicAttack.MissileSpeed;
+                MoveTo(_movementPrediction.GetPrediction(target).UnitPosition);
+            }
+            else
+                MoveTo(goalPosition);
         }
+
 
         private static void MoveTo(Vector3 position)
         {
@@ -546,10 +550,17 @@ namespace DZDraven_Reloaded
             return false;
         }
 
+        private static bool HaveCancled()
+        {
+            if (_lastAATick - Environment.TickCount > MyHero.AttackCastDelay * 1000 + 25)
+                return lastRealAttack < _lastAATick;
+            return false;
+        }
+
         public static bool CanMove()
         {
             if (_lastAATick <= Environment.TickCount)
-                return Environment.TickCount + Game.Ping / 2 >= _lastAATick + MyHero.AttackCastDelay * 1000 + _Windup && _movement;
+                return Environment.TickCount + Game.Ping / 2 >= _lastAATick + MyHero.AttackCastDelay * 1000 + _windup && _movement;
             return false;
         }
 
@@ -562,7 +573,7 @@ namespace DZDraven_Reloaded
         {
             var ret = offset;
             if (MyHero.ChampionName == "Azir")
-                ret += 125;
+                ret += 50;
             return Menu.Item("orb_Misc_Farmdelay").GetValue<Slider>().Value + ret;
         }
 
@@ -615,7 +626,7 @@ namespace DZDraven_Reloaded
         {
             if (!Menu.Item("orb_Misc_AutoWindUp").GetValue<bool>())
             {
-                _Windup = GetCurrentWindupTime();
+                _windup = GetCurrentWindupTime();
                 return;
             }
             var additional = 0;
@@ -627,9 +638,9 @@ namespace DZDraven_Reloaded
                 additional = +20;
             var windUp = Game.Ping + additional;
             if (windUp < 40)
-                windUp = 200;
+                windUp = 40;
             Menu.Item("orb_Misc_ExtraWindUp").SetValue(windUp < 200 ? new Slider(windUp, 200, 0) : new Slider(200, 200, 0));
-            _Windup = windUp;
+            _windup = windUp;
         }
 
         public static int GetCurrentWindupTime()
@@ -654,8 +665,6 @@ namespace DZDraven_Reloaded
             var ret = source.AttackRange + MyHero.BoundingRadius;
             if (target != null)
                 ret += target.BoundingRadius;
-            if (target is Obj_AI_Hero)
-                ret -= 25;
             return ret;
         }
 
