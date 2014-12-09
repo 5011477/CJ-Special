@@ -21,24 +21,24 @@ namespace SFSeries
             W = new Spell(SpellSlot.W, 1000);
             E = new Spell(SpellSlot.E, 125);
             W.SetSkillshot(0.5f,350f,700f,false,SkillshotType.SkillshotCircle);
-            Menu = new Menu("鏃犳瘨鐐奸噾", "menu", true);
+            Menu = new Menu("无毒炼金", "menu", true);
 
-            var orbwalkerMenu = new Menu("璧扮爫", "orbwalker");
+            var orbwalkerMenu = new Menu("走砍", "orbwalker");
             Orbwalker = new Orbwalking.Orbwalker(orbwalkerMenu);
             Menu.AddSubMenu(orbwalkerMenu);
-            var comboMenu = new Menu("杩炴嫑", "combo");
-            comboMenu.AddItem(new MenuItem("useW", "浣跨敤 W").SetValue(true));
-            comboMenu.AddItem(new MenuItem("useE", "浣跨敤 E").SetValue(true));
+            var comboMenu = new Menu("连招", "combo");
+            comboMenu.AddItem(new MenuItem("useW", "使用 W").SetValue(true));
+            comboMenu.AddItem(new MenuItem("useE", "使用 E").SetValue(true));
             Menu.AddSubMenu(comboMenu);
             Menu.AddItem(
-                new MenuItem("enabled", "闅愬舰姣掕嵂").SetValue(new KeyBind("T".ToCharArray()[0],
+                new MenuItem("enabled", "隐形毒药").SetValue(new KeyBind("T".ToCharArray()[0],
                     KeyBindType.Toggle)));
-            Menu.AddItem(new MenuItem("spam", "鏃犻檺澶х瑧").SetValue(true));
+            Menu.AddItem(new MenuItem("spam", "无限大笑").SetValue(true));
             Menu.AddToMainMenu();
-Menu.AddSubMenu(new Menu("鍒濊姹夊寲", "by chujian"));
+Menu.AddSubMenu(new Menu("初见汉化", "by chujian"));
 
-Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao", "姹夊寲缇わ細386289593"));
-Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao2", "濞冨▋缇わ細13497795"));
+Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao", "汉化群：386289593"));
+Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao2", "娃娃群：13497795"));
 
             Program.PrintMessage("鍔犺浇鎴愬姛!鍒濊姹夊寲QQ 5011477");
             Game.OnGameUpdate += Game_OnGameUpdate;
