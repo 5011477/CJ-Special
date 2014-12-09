@@ -21,7 +21,7 @@ namespace SFSeries
             W = new Spell(SpellSlot.W, 1000);
             E = new Spell(SpellSlot.E, 125);
             W.SetSkillshot(0.5f,350f,700f,false,SkillshotType.SkillshotCircle);
-            Menu = new Menu("无毒炼金", "menu", true);
+            Menu = new Menu("【初见汉化】无毒炼金", "menu", true);
 
             var orbwalkerMenu = new Menu("走砍", "orbwalker");
             Orbwalker = new Orbwalking.Orbwalker(orbwalkerMenu);
@@ -38,7 +38,7 @@ namespace SFSeries
 Menu.AddSubMenu(new Menu("初见汉化", "by chujian"));
 
 Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao", "汉化群：386289593"));
-Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao2", "娃娃群：13497795"));
+Menu.SubMenu("by chujian").AddItem(new MenuItem("qunhao2", "交流群群：333399"));
 
             Program.PrintMessage("鍔犺浇鎴愬姛!鍒濊姹夊寲QQ 5011477");
             Game.OnGameUpdate += Game_OnGameUpdate;
